@@ -5,6 +5,8 @@ dotenv.config({ path: path.join(process.cwd(), '.env') })
 import pg from 'pg'
 import { CreateUser } from './conroller/createUser'
 import { CreateTodos } from './conroller/createTodos'
+import { GetUsers } from './conroller/getallUser'
+import { GetUsersById } from './conroller/getUserById'
 
 const app = express()
 app.use(express.json())
@@ -57,6 +59,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.post('/users', CreateUser);
 app.post('/todos', CreateTodos);
+app.get("/user", GetUsers);
+app.get('/users/:id', GetUsersById)
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
