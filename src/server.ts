@@ -7,6 +7,7 @@ import { CreateUser } from './conroller/createUser'
 import { CreateTodos } from './conroller/createTodos'
 import { GetUsers } from './conroller/getallUser'
 import { GetUsersById } from './conroller/getUserById'
+import { UpdateUseById } from './conroller/updateUserByid'
 
 const app = express()
 app.use(express.json())
@@ -61,6 +62,7 @@ app.post('/users', CreateUser);
 app.post('/todos', CreateTodos);
 app.get("/user", GetUsers);
 app.get('/users/:id', GetUsersById)
+app.put('/users/:id', UpdateUseById);
 
 
 app.listen(port, () => {
