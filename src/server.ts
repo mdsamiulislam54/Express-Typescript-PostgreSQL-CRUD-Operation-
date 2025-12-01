@@ -10,6 +10,8 @@ import { GetUsersById } from './conroller/getUserById'
 import { UpdateUseById } from './conroller/updateUserByid'
 import { DeletedUser } from './conroller/userDeleted'
 import { DeleteTodos } from './conroller/todosDeleted'
+import { NotFound } from './conroller/notfound'
+import { Logger } from './middleware/logger'
 
 const app = express()
 app.use(express.json())
@@ -56,7 +58,7 @@ initDB().then(() => {
 
 
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', Logger, (req: Request, res: Response) => {
     res.send('Hello World!')
 })
 
@@ -68,7 +70,7 @@ app.put('/users/:id', UpdateUseById);
 app.delete('/users/:id', DeletedUser);
 app.delete("/todos/:id", DeleteTodos)
 
-
+app.use(NotFound)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
