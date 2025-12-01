@@ -9,6 +9,7 @@ import { GetUsers } from './conroller/getallUser'
 import { GetUsersById } from './conroller/getUserById'
 import { UpdateUseById } from './conroller/updateUserByid'
 import { DeletedUser } from './conroller/userDeleted'
+import { DeleteTodos } from './conroller/todosDeleted'
 
 const app = express()
 app.use(express.json())
@@ -65,6 +66,7 @@ app.get("/users", GetUsers);
 app.get('/users/:id', GetUsersById)
 app.put('/users/:id', UpdateUseById);
 app.delete('/users/:id', DeletedUser);
+app.delete("/todos/:id", DeleteTodos)
 
 
 app.listen(port, () => {
