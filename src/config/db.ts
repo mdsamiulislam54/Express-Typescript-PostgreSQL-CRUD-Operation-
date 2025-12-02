@@ -2,7 +2,8 @@ import { config } from ".";
 import pg from 'pg'
 
 export const pool = new pg.Pool({
-    connectionString: config.dbConnectionString
+    connectionString: config.dbConnectionString,
+    ssl:false
 })
 
 export const initDB = async () => {
@@ -11,6 +12,7 @@ export const initDB = async () => {
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
             email VARCHAR(100) NOT NULL UNIQUE,
+            password VARCHAR (150) NOT NULL,
             age INT NOT NULL,
             phone VARCHAR(15),
             address TEXT,

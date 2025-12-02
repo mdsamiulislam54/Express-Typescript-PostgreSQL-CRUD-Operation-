@@ -6,8 +6,8 @@ import { userService } from "./service";
 
  const CreateUser = async (req: Request, res: Response) => {
     try {
-        const { name, email, age, phone, address } = req.body;
-        const user = await userService.createUser(name, email, age, phone, address);
+        // const { name, email, age, phone, address } = req.body;
+        const user = await userService.createUser(req.body);
      
         res.status(201).json({ success: true, data: user.rows[0] });
     } catch (error) {

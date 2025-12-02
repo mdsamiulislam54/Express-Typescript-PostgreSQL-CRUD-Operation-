@@ -1,7 +1,11 @@
 import { pool } from "../../config/db";
+import bcrypt from 'bcrypt';
 
-const createUser = async (name: string, email: string, age: number, phone: string, address: string) => {
-    const user = await pool.query('INSERT INTO users(name, email,age,phone,address) VALUES($1, $2, $3, $4, $5) RETURNING *', [name, email, age, phone, address]);
+const createUser = async (playload: Record<string, unknown>) => {
+    const { name, email,password, age, phone, address } = playload;
+    const hashedPassword = await bcrypt.hash(password as string, 10);
+    console.log(hashedPassword);
+    const user = await pool.query('INSERT INTO users(name, email, password, age,phone,address) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', [name, email, hashedPassword, age, phone, address]);
 
     return user;
 }
@@ -11,7 +15,7 @@ const getUsers = async () => {
     return result;
 }
 
-const GetUsersById = async (id:any) => {
+const GetUsersById = async (id: any) => {
     const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
     return result;
 }
