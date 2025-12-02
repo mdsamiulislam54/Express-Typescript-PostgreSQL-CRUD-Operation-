@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { pool } from "../server";
+import { pool } from "../config/db";
 
 export const GetUsers = async (req:Request, res:Response)=>{
     try {
