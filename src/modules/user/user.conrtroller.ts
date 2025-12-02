@@ -6,6 +6,7 @@ import { userService } from "./service";
 
  const CreateUser = async (req: Request, res: Response) => {
     try {
+        
         // const { name, email, age, phone, address } = req.body;
         const user = await userService.createUser(req.body);
      
@@ -19,6 +20,7 @@ import { userService } from "./service";
 
 const GetUsers = async (req:Request, res:Response)=>{
     try {
+        
         const result = await userService.getUsers();
         res.status(200).json(result.rows);
     } catch (error) {

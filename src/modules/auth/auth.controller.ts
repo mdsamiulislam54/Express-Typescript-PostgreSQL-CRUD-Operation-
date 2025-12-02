@@ -5,7 +5,10 @@ const LoginUser = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
         const user = await authServices.LoginUser(email, password);
-        res.status(200).json({ success: true, message: 'login Successfully', user })
+        if (user !== null) {
+            res.status(200).json({ success: true, message: 'login Successfully', user })
+        }
+        res.status(200).send({ success: false, message: 'User login  Error',})
     } catch (error) {
         res.status(500).json({ success: false, message: 'User login  Error', error: error })
     }
